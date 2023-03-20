@@ -1,0 +1,98 @@
+ return Scaffold(
+      appBar: AppBar(
+        title: const Text('Talkytalk'),
+        backgroundColor: const Color(0xff282F6D),
+        centerTitle: false,
+      ),
+      body: Container(
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: Text(
+                "Messenger",
+                style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xff282F6D)),
+              ),
+            ),
+            Expanded(
+                child: ListView(
+              children: [
+                Card(
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        child: Text('user'),
+                      ),
+                      title: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: const [Text('user'), Text('How u doing')],
+                      ),
+                    ),
+                  ),
+                ),
+                Card(
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: ListTile(
+                        leading: CircleAvatar(
+                          child: Text('user'),
+                        ),
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: const [
+                                Text('user'),
+                                Text('Wanna play game')
+                              ],
+                            ),
+                            CircleAvatar(
+                              backgroundColor: Color(0xff282F6D),
+                              radius: 9,
+                            )
+                          ],
+                        )),
+                  ),
+                ),
+                Card(
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: ListTile(
+                        leading: CircleAvatar(
+                          child: Text('user'),
+                        ),
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: const [
+                                Text('user'),
+                                Text('Wanna play game')
+                              ],
+                            ),
+                            CircleAvatar(
+                              backgroundColor: Color(0xff282F6D),
+                              radius: 9,
+                            )
+                          ],
+                        )),
+                  ),
+                ),
+              ],
+            )),
+          ],
+        ),
+      ),
+    );
