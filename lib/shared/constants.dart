@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
 
 class Constant {
-  final primaryColor = const Color(0xFFFF5722);
+  final primaryColor = Color.fromARGB(255, 13, 138, 130);
 }

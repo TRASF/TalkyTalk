@@ -1,10 +1,14 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:html';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:projectmockpage/helper/HelperFunction.dart';
 import 'package:projectmockpage/pages/auth/loginPage.dart';
+import 'package:projectmockpage/pages/auth/registerPage.dart';
 import 'package:projectmockpage/pages/homePage.dart';
+import 'package:projectmockpage/pages/profilePage.dart';
 import 'package:projectmockpage/shared/constants.dart';
 import 'shared/firebase_options.dart';
 
@@ -32,9 +36,13 @@ class _MyAppState extends State<MyApp> {
   }
 
   getUserLoggedInStatus() async {
-    await HelperFunctions.getUserLoggedInStatus().then((value) => {
-          if (value != null) {_isSingedIn = value}
+    await HelperFunctions.getUserLoggedInStatus().then((value) {
+      if (value != null) {
+        setState(() {
+          _isSingedIn = value;
         });
+      }
+    });
   }
 
   @override
@@ -44,7 +52,8 @@ class _MyAppState extends State<MyApp> {
           primaryColor: Constant().primaryColor,
           scaffoldBackgroundColor: Colors.white),
       debugShowCheckedModeBanner: false,
-      home: _isSingedIn ? HomePage() : LoginPage(),
+      home: _isSingedIn ? const HomePage() : const LoginPage(),
+      //home: HomePage(),
     );
   }
 }
