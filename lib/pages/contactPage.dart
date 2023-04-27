@@ -22,16 +22,15 @@ class _ContactPageState extends State<ContactPage> {
   @override
   void initState() {
     super.initState();
-    gettingUsername();
+    getUsername();
   }
 
-  gettingUsername() async {
+  getUsername() async {
     await HelperFunctions.getUserName().then((value) {
       setState(() {
         userName = value!;
       });
     });
-
     await DatabaseService().getUser().then((snapshot) {
       setState(() {
         users = snapshot;
@@ -46,17 +45,17 @@ class _ContactPageState extends State<ContactPage> {
         backgroundColor: Theme.of(context).primaryColor,
         elevation: 0,
         centerTitle: true,
-        title: Text(
-          "Contact",
+        title: const Text(
+          "Contacts",
           style: TextStyle(
               color: Colors.white, fontWeight: FontWeight.bold, fontSize: 27),
         ),
       ),
-      body: nameList(),
+      body: contactList(),
     );
   }
 
-  nameList() {
+  contactList() {
     return StreamBuilder(
       stream: users,
       builder: (context, AsyncSnapshot snapshot) {
@@ -65,14 +64,14 @@ class _ContactPageState extends State<ContactPage> {
               .where((doc) =>
                   doc.get('uid') != FirebaseAuth.instance.currentUser!.uid)
               .toList();
-
           return ListView.builder(
             itemCount: filteredDocs.length,
             itemBuilder: (context, index) {
               return Nametile(
-                  myName: userName,
-                  friendName: filteredDocs[index].get('fullName'),
-                  friendID: filteredDocs[index].get('uid'));
+                myName: userName,
+                friendName: filteredDocs[index].get('fullName'),
+                friendID: filteredDocs[index].get('uid'),
+              );
             },
           );
         } else {

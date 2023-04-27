@@ -50,54 +50,55 @@ class _ChatPageState extends State<ChatPage> {
               color: Colors.white, fontWeight: FontWeight.bold, fontSize: 27),
         ),
       ),
-      body: Stack(
+      body: Column(
         children: <Widget>[
-          chatMessage(),
+          Expanded(child: chatMessage()),
           Container(
-            alignment: Alignment.bottomCenter,
-            width: MediaQuery.of(context).size.width,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
-              width: MediaQuery.of(context).size.width,
-              color: Theme.of(context).primaryColor,
-              child: Row(
-                children: [
-                  Expanded(
-                      child: TextFormField(
-                    controller: messageC,
-                    style: const TextStyle(color: Colors.white),
-                    decoration: const InputDecoration(
-                      hintText: "Message...",
-                      hintStyle: TextStyle(fontSize: 16, color: Colors.white54),
-                      border: InputBorder.none,
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            color: Colors.white,
+            child: Row(
+              children: [
+                Expanded(
+                    child: TextFormField(
+                  controller: messageC,
+                  decoration: InputDecoration(
+                    hintText: "Type your message...",
+                    hintStyle: TextStyle(fontSize: 16, color: Colors.grey),
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(30),
                     ),
-                  )),
-                  const SizedBox(
-                    width: 12,
+                    fillColor: Colors.grey[200],
+                    filled: true,
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      sendMessage();
-                    },
-                    child: Container(
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                      child: const Center(
-                        child: Icon(
-                          Icons.send,
-                          color: Colors.white,
-                        ),
+                )),
+                const SizedBox(
+                  width: 8,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    sendMessage();
+                  },
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor,
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    child: const Center(
+                      child: Icon(
+                        Icons.send,
+                        color: Colors.white,
                       ),
                     ),
-                  )
-                ],
-              ),
+                  ),
+                )
+              ],
             ),
-          )
+          ),
         ],
       ),
     );

@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:matcher/matcher.dart';
 
 class Messagetile extends StatefulWidget {
   final String message;
@@ -23,17 +20,14 @@ class _MessagetileState extends State<Messagetile> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(
-          top: 4,
-          bottom: 4,
+          top: 8,
+          bottom: 8,
           left: widget.meSend ? 0 : 24,
           right: widget.meSend ? 24 : 0),
       alignment: widget.meSend ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
-        margin: widget.meSend
-            ? const EdgeInsets.only(left: 30)
-            : const EdgeInsets.only(right: 30),
-        padding:
-            const EdgeInsets.only(top: 20, bottom: 20, right: 20, left: 20),
+        margin: EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
         decoration: BoxDecoration(
           borderRadius: widget.meSend
               ? const BorderRadius.only(
@@ -46,18 +40,18 @@ class _MessagetileState extends State<Messagetile> {
                   topLeft: Radius.circular(30),
                   bottomRight: Radius.circular(30),
                 ),
-          color:
-              widget.meSend ? Theme.of(context).primaryColor : Colors.grey[700],
+          color: widget.meSend
+              ? Theme.of(context).primaryColor.withOpacity(0.8)
+              : Colors.grey[700],
         ),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(
-            widget.message,
-            textAlign: TextAlign.center,
-            style: widget.meSend
-                ? const TextStyle(fontSize: 16)
-                : const TextStyle(fontSize: 16, color: Colors.white),
-          )
-        ]),
+        child: Text(
+          widget.message,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 16,
+            color: widget.meSend ? Colors.white : Colors.white,
+          ),
+        ),
       ),
     );
   }

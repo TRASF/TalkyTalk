@@ -19,10 +19,10 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   void initState() {
     super.initState();
-    gettingUserData();
+    getUserData();
   }
 
-  gettingUserData() async {
+  getUserData() async {
     await HelperFunctions.getUserUserEmail().then((value) {
       setState(() {
         email = value!;
@@ -55,8 +55,9 @@ class _ProfilePageState extends State<ProfilePage> {
           Icon(
             Icons.account_circle,
             size: 200,
-            color: Colors.black,
+            color: Theme.of(context).primaryColor,
           ),
+          SizedBox(height: 20),
           Text(
             userName,
             style: TextStyle(
@@ -64,11 +65,12 @@ class _ProfilePageState extends State<ProfilePage> {
               fontWeight: FontWeight.bold,
             ),
           ),
+          SizedBox(height: 10),
           Text(
             email,
             style: TextStyle(
               fontSize: 20,
-              color: Colors.amber,
+              color: Colors.grey[700],
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -79,7 +81,7 @@ class _ProfilePageState extends State<ProfilePage> {
             width: double.infinity,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  backgroundColor: Theme.of(context).primaryColor,
+                  primary: Theme.of(context).primaryColor,
                   elevation: 0,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30))),

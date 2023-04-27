@@ -1,4 +1,4 @@
-import 'dart:html';
+// import 'dart:html';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -29,16 +29,15 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    gettingUsername();
+    getUsername();
   }
 
-  gettingUsername() async {
+  getUsername() async {
     await HelperFunctions.getUserName().then((value) {
       setState(() {
         userName = value!;
       });
     });
-
     await DatabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
         .getUserchats()
         .then((snapshot) {
@@ -86,8 +85,8 @@ class _HomePageState extends State<HomePage> {
             itemBuilder: (context, index) {
               return ChatTile(
                   myName: userName,
-                  chatID: getchatID(snapshot.data['chats'][index]),
-                  chatName: getchatName(snapshot.data['chats'][index]));
+                  chatID: extractChatID(snapshot.data['chats'][index]),
+                  chatName: extractChatName(snapshot.data['chats'][index]));
             },
           );
         } else {
@@ -97,11 +96,11 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  getchatID(String chatarr) {
+  extractChatID(String chatarr) {
     return chatarr.substring(0, chatarr.indexOf(","));
   }
 
-  getchatName(String chatarr) {
+  extractChatName(String chatarr) {
     return chatarr.substring(chatarr.indexOf(",") + 1);
   }
 }
